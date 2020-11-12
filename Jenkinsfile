@@ -15,6 +15,12 @@ pipeline {
     }
 
     stage('test') {
+      agent {
+        docker {
+          image 'lagairogo/carts-maven'
+        }
+
+      }
       steps {
         echo 'this is the test job'
         sh 'mvn test'
@@ -35,6 +41,12 @@ pipeline {
     }
 
     stage('Archive') {
+      agent {
+        docker {
+          image 'lagairogo/carts-maven'
+        }
+
+      }
       steps {
         archiveArtifacts '**/target/*.jar'
       }
